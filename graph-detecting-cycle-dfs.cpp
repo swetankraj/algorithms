@@ -48,25 +48,29 @@ bool solve(bool visited[], bool recstack[], int s, vector<int> al[]){
     return false;
 }
 
-bool solveutil(bool visited[], bool recstack[], int s, vector<int> al[], int n){ //if there are disconnected components
+bool solveutil(bool visited[], bool recstack[], vector<int> al[], int n){ //if there are disconnected components
     for(int i=0; i<n; i++){
         if(solve(visited, recstack, i, al)) return true;
     }
+
+    return false;
 }
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    int n, m, k; cin>>n>>m>>k;
+    int n, m; cin>>n>>m;
     vector<int> al[n+1];
     bool visited[n+1]; memset(visited, false, sizeof(visited));
     bool recstack[n+1]; memset(recstack, false, sizeof(recstack));
 
     getinput(m, al);
-    if(solveutil(visited, recstack, k, al, n)) cout<<"Contains cycle";
+    if(solveutil(visited, recstack, al, n)) cout<<"Contains cycle";
     else cout<<"No Cycle Present!";
     cout<<endl;
     printutil(n, al);
 
     return 0;
 }
+
+
